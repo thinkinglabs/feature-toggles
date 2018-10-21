@@ -6,15 +6,15 @@ package io.thinkinglabs;
 public class InvoiceEmailer
 {
 
-    private final Features features;
+    private final FeatureDecisions featureDecisions;
 
-    public InvoiceEmailer(final Features features) {
-        this.features = features;
+    public InvoiceEmailer(final FeatureDecisions featureDecisions) {
+        this.featureDecisions = featureDecisions;
     }
 
     public Email generateInvoiceEmail(final Invoice invoice) {
         Email baseEmail = buildEmailForInvoice(invoice);
-        if (features.isEnabled("next-gen-ecomm")) {
+        if (featureDecisions.includeOrderCancellationInEmail()) {
             return addOrderCancellationContentToBaseEmail(baseEmail);
         } else {
             return baseEmail;
