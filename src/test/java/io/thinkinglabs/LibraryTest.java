@@ -3,16 +3,26 @@ package io.thinkinglabs;/*
  */
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
-        InvoiceEmailer classUnderTest = new InvoiceEmailer(
+    @Test
+    public void confirmationMail() {
+        InvoiceEmailer classUnderTest = new FeatureAwareFactory(
                 new FeatureDecisions(
-                        new Features(
-                                Map.of("next-gen-ecomm", Boolean.TRUE))));
-        assertEquals(new Email(), classUnderTest.generateInvoiceEmail(new Invoice()));
+                        new Features(Collections.emptyMap()))).invoiceEmailer();
+        assertEquals(new Email("blablabla"), classUnderTest.generateInvoiceEmail(new Invoice()));
+    }
+
+    @Test
+    public void confirmationMailWithOrderCancellation() {
+        InvoiceEmailer classUnderTest = new FeatureAwareFactory(
+                new FeatureDecisions(
+                    new Features(
+                        Map.of("next-gen-ecomm", Boolean.TRUE)))).invoiceEmailer();
+        assertEquals(new Email("blablabla\nCancel order"), classUnderTest.generateInvoiceEmail(new Invoice()));
     }
 }

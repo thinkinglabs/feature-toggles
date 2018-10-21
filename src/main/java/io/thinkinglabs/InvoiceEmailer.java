@@ -5,29 +5,20 @@ package io.thinkinglabs;
  */
 public class InvoiceEmailer
 {
+    private final AddContentToEmail addContentToEmail;
 
-    private final FeatureDecisions featureDecisions;
+    public InvoiceEmailer(final AddContentToEmail addContentToEmail) {
 
-    public InvoiceEmailer(final FeatureDecisions featureDecisions) {
-        this.featureDecisions = featureDecisions;
+        this.addContentToEmail = addContentToEmail;
     }
 
     public Email generateInvoiceEmail(final Invoice invoice) {
         Email baseEmail = buildEmailForInvoice(invoice);
-        if (featureDecisions.includeOrderCancellationInEmail()) {
-            return addOrderCancellationContentToBaseEmail(baseEmail);
-        } else {
-            return baseEmail;
-        }
-    }
-
-    private Email addOrderCancellationContentToBaseEmail(final Email baseEmail)
-    {
-        return baseEmail;
+        return addContentToEmail.addContent(baseEmail);
     }
 
     private Email buildEmailForInvoice(final Invoice invoice)
     {
-        return new Email();
+        return new Email("blablabla");
     }
 }
