@@ -43,4 +43,12 @@ public class Email
     {
         return Objects.hash(body);
     }
+
+    @Override
+    public String toString()
+    {
+        return "Email{" +
+                "body='" + body + '\'' +
+                '}';
+    }
 }
