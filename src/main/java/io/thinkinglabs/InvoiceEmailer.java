@@ -23,11 +23,11 @@ public class InvoiceEmailer
 
     private Email addOrderCancellationContentToBaseEmail(final Email baseEmail)
     {
-        return baseEmail;
+        return baseEmail.append("Cancel order");
     }
 
     private Email buildEmailForInvoice(final Invoice invoice)
     {
-        return new Email();
+        return new Email(invoice);
     }
 }
