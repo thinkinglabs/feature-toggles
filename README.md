@@ -1,4 +1,4 @@
-# feature-toggles
+# Feature Toggle Implementation Techniques
 A Java implementation of the [implementation techniques for feature toggles](https://martinfowler.com/articles/feature-toggles.html#ImplementationTechniquesa) by [Pete Hodgson](https://twitter.com/ph1).
 
 For each of the 3 different implementation techniques a separate branch was created:
