@@ -19,6 +19,6 @@ public class InvoiceEmailer
 
     private Email buildEmailForInvoice(final Invoice invoice)
     {
-        return new Email("blablabla");
+        return new Email(invoice);
     }
 }
