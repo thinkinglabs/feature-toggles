@@ -14,6 +14,11 @@ public class Email
         this.body = body;
     }
 
+    public Email(final Invoice invoice)
+    {
+        body = invoice.getInvoiceNr() + ": bla bla bla";
+    }
+
     public Email append(String line) {
         return new Email(new StringBuilder(body).append("\n").append(line).toString());
     }
@@ -37,5 +42,13 @@ public class Email
     public int hashCode()
     {
         return Objects.hash(body);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Email{" +
+                "body='" + body + '\'' +
+                '}';
     }
 }
